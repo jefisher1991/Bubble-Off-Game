@@ -1,2 +1,2 @@
-<?php include_once(“game.html”); ?>
+<?php include_once("game.html"); ?>
 
