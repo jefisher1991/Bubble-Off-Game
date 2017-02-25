@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fishy Game</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1> Bubble Blast </h1>
+            <div class="col-md-12 charRow"> </div>
+        </div>
+        <div class="panel panel-primary headers">Choose your Player</div>
+        <div class="row" id=" pickedPlayer">
+            <button type="button" class="btn btn-default btn-lg crab-btn button-text" id="myCrab"> </button>
+            <button type="button" class="btn btn-default btn-lg starfish-btn button-text" id="myStarFish"> </button>
+            <button type="button" class="btn btn-default btn-lg dolphin-btn button-text" id="myDolphin"> </button>
+            <button type="button" class="btn btn-default btn-lg turtle-btn button-text" id="myTurtle"> </button>
+        </div>
+         <div class="panel panel-primary headers">Choose an Opponent</div>
+        <div class="row" id="enemies">
+        </div>
+        <div class="panel panel-primary headers">Selected Opponent</div>
+        <div class="row" id="defender">
+        </div>
+        <div class="panel panel-primary headers">Begin Bubble Off!!!</div>
+        <div class="row">
+            <button id="attackButton" class="btn btn-danger btn-lg attackButton"></button>
+        </div>
+        <script type="text/javascript">
+        $(document).ready(function() {
+
+
+
+            function dolphin() {
+                this.name = "Flipper the Dolphin";
+                this.hp = 100;
+                this.type = "dolphin";
+                this.attackValue = 8;
+                this.specialPower = "goo";
+                this.attack = function(creatureObject) {
+                    this.hp -= creatureObject.attackValue;
+                    creatureObject.hp -= this.attackValue;
+                }
+            }
+
+            function turtle() {
+                this.name = "Chomp the Turtle";
+                this.hiddenValue =
+                    this.attackValue = 10;
+                this.hp = 150;
+                this.speicalPower = "camoflauge";
+                this.attack = function(creatureObject) {
+                    this.hp -= creatureObject.attackValue;
+                    creatureObject.hp -= this.attackValue;
+                }
+            }
+
+            function starfish() {
+                this.name = "Orion the Starfish";
+                this.type = "starfish";
+                this.attackValue = 15;
+                this.hp = "200";
+                this.specialPower = "flop";
+                this.attack = function(creatureObject) {
+                    this.hp -= creatureObject.attackValue;
+                    creatureObject.hp -= this.attackValue;
+                }
+            }
+
+            function crab() {
+                this.name = "Pinch the Crab";
+                this.type = "Crab";
+                this.attackValue = 20;
+                this.hp = "250";
+                this.specialPower = "pinch";
+                this.attack = function(creatureObject) {
+                    this.hp -= creatureObject.attackValue;
+                    creatureObject.hp -= this.attackValue;
+                }
+            }
+
+            var myDolphin = new dolphin();
+            var myTurtle = new turtle();
+            var myStarFish = new starfish();
+            var myCrab = new crab();
+
+
+           // function attack () {   
+           //  if $("pickedPlayer.hp" <= 0) {
+           //      console.log("You lose! The other player out bubbled you!");
+           //    } 
+           //    if ("defender.hp" <= 0) {
+           //      console.log("You win! You out-bubbled the other player!");
+           //    }
+           //    pickedPlayer.attack(defender);
+           //    console.log(attacker.hp);
+
+           
+           //  };
+          
+
+     
+
+        function attachEnemyClickHandlers() {
+            console.log('attaching enemy click handlers');
+            $("#enemies button").click(function(){
+                $("#defender").append(this);
+                 });
+        }
+
+var seaAnimals = [myCrab, myStarFish, myDolphin, myTurtle];
+
+                $("#myCrab").click(function() {
+                     $("#pickedPlayer").html('<button type="button" class="btn btn-default btn-lg crab-btn " id="myCrab">' + '</button>');
+                    $("#enemies").append('<button type="button" class="btn btn-default btn-lg starfish-btn" id="myStarFish">' + '</button>');
+                    $("#enemies").append('<button type="button" class="btn btn-default btn-lg dolphin-btn" id="myDolphin">' + '</button>');
+                    $("#enemies").append('<button type="button" class="btn btn-default btn-lg turtle-btn" id="myTurtle">' + '</button>');
+                    attachEnemyClickHandlers();
+
+     
+                }); 
+       
+
+            $("#myStarFish").click(function() {
+                $("#pickedPlayer").html('<button type="button" class="btn btn-default btn-lg starfish-btn" id="myStarFish">' + '</button>');
+                $("#enemies").append('<button type="button" class="btn btn-default btn-lg crab-btn" id="myCrab">' + '</button>');
+                $("#enemies").append('<button type="button" class="btn btn-default btn-lg dolphin-btn" id="myDolphin">' + '</button>');
+                $("#enemies").append('<button type="button" class="btn btn-default btn-lg turtle-btn" id="myTurtle">' + '</button>');
+                attachEnemyClickHandlers();
+            });
+
+
+
+            $("#myDolphin").click(function() {
+                $("#pickedPlayer").html('<button type="button" class="btn btn-default btn-lg dolphin-btn" id="myDolphin">' + '</button>');
+                $("#enemies").append('<button type="button" class="btn btn-default btn-lg starfish-btn" id="myStarFish">' + '</button>');
+                $("#enemies").append('<button type="button" class="btn btn-default btn-lg crab-btn" id="myCrab">' + '</button>');
+                $("#enemies").append('<button type="button" class="btn btn-default btn-lg turtle-btn" id="myTurtle">' + '</button>');
+                attachEnemyClickHandlers();
+            });
+
+
+            $("#myTurtle").click(function() {
+                $("#pickedPlayer").html('<button type="button" class="btn btn-default btn-lg turtle-btn" id="myTurtle">' + '</button>');
+                $("#enemies").append('<button type="button" class="btn btn-default btn-lg starfish-btn" id="myStarFish">' + '</button>');
+                $("#enemies").append('<button type="button" class="btn btn-default btn-lg dolphin-btn" id="myDolphin">' + '</button>');
+                $("#enemies").append('<button type="button" class="btn btn-default btn-lg crab-btn" id="myCrab">' + '</button>');
+                attachEnemyClickHandlers();
+            });
+
+                    
+});
+
+
+
+        </script>
+</body>
+
+</html>
